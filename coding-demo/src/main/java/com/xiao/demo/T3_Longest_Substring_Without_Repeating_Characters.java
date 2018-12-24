@@ -41,11 +41,36 @@ public class T3_Longest_Substring_Without_Repeating_Characters {
         return maxLen;
     }
 
+    public int lengthOfLongestSubstring2(String s) {
+        char[] arr = s.toCharArray();
+        int len = arr.length;
+
+        if(len<2){
+            return len;
+        }
+
+        Map<Character,Integer> map = new HashMap<>();
+        int max=0;
+       for(int start=0,end = 0;end < len ; end ++){
+           char ch = arr[end];
+           Integer tmp = map.get(ch);
+           if(tmp !=null){
+               //核心代码：判断是否出现过，取最大的
+               start = tmp >= start ? tmp+1 : start;
+           }
+           map.put(ch,end);
+           int tmpmax = end - start + 1;
+           max = max > tmpmax ? max : tmpmax;
+       }
+        return max;
+    }
+
     public static void main(String[] args) {
-        String s = "abcabcbb";
+        String s = "pwwwb";
 
         T3_Longest_Substring_Without_Repeating_Characters t3 = new T3_Longest_Substring_Without_Repeating_Characters();
-        int max = t3.lengthOfLongestSubstring(s);
-        System.out.println(max);
+//        int max = t3.lengthOfLongestSubstring(s);
+        int max2 = t3.lengthOfLongestSubstring2(s);
+        System.out.println(max2);
     }
 }
