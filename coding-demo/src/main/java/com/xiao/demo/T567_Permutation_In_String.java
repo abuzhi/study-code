@@ -18,7 +18,7 @@ public class T567_Permutation_In_String {
 
         int len2=s2.length();
 
-        for(int i=0;i<len2-len1;i++){
+        for(int i=0;i<=len2-len1;i++){
 
             Map<Character,Integer> map2 =new HashMap<>();
             int j = len1+i;
