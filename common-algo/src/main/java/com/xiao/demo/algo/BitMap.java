@@ -1,5 +1,7 @@
 package com.xiao.demo.algo;
 
+import java.util.BitSet;
+
 /**
  * Created by xiao on 2018/11/23.
  * 海量数据处理算法—Bit-Map
@@ -9,4 +11,8 @@ package com.xiao.demo.algo;
  */
 public class BitMap {
 
+    public void test(){
+        BitSet bitSet = new BitSet();
+
+    }
 }
