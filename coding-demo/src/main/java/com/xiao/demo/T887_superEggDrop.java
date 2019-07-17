@@ -48,15 +48,14 @@ package com.xiao.demo;
 public class T887_superEggDrop {
 
     public int superEggDrop(int K, int N) {
-
         int i = 0;
 
         return i;
-
     }
 
     public static void main(String[] args) {
 
+        // TODO: 2019/7/16 hard code....
     }
 
 }
