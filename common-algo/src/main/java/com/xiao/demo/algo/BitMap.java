@@ -11,8 +11,5 @@ import java.util.BitSet;
  */
 public class BitMap {
 
-    public void test(){
-        BitSet bitSet = new BitSet();
 
-    }
 }

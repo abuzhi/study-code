@@ -36,7 +36,10 @@ public class BitOperTest {
         System.out.println(Integer.toBinaryString(b));
         System.out.println(Integer.toString(b));
 
-        long c = 1 << 63;
+        long c = 1L << 63;
+        System.out.println(Long.toBinaryString(c));
+
+        c = 1 << 63;
         System.out.println(Long.toBinaryString(c));
 
         int low = 65535;
