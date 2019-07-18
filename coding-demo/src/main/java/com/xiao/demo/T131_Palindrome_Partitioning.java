@@ -29,4 +29,9 @@ public class T131_Palindrome_Partitioning {
 
         return null;
     }
+
+
+    public static void main(String[] args) {
+
+    }
 }
