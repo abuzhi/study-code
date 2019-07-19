@@ -28,6 +28,7 @@ public class T22_Generate_Parentheses {
 
         List<String> result = new ArrayList<>();
 
+        // TODO: 2019/7/19
         return null;
     }
 
