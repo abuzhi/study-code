@@ -28,27 +28,7 @@ public class T22_Generate_Parentheses {
 
         List<String> result = new ArrayList<>();
 
-
         return null;
-    }
-
-    /**
-     * 计数器当作栈使用
-     * @param chars
-     * @return
-     */
-    private boolean valid(char[] chars){
-        int count = 0;
-        for(char c : chars){
-            if('('==c){
-                count ++;
-            }else {
-                count --;
-            }
-            if(count<0) return false;
-        }
-
-        return count ==0;
     }
 
     public static void main(String[] args) {
