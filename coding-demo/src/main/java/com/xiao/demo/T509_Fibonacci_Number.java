@@ -37,6 +37,11 @@ package com.xiao.demo;
  */
 public class T509_Fibonacci_Number {
 
+    /**
+     * 递归实现
+     * @param N
+     * @return
+     */
     public int fib(int N) {
 
         if(N==0){
@@ -48,9 +53,36 @@ public class T509_Fibonacci_Number {
         }
     }
 
+    /**
+     * 迭代实现,速度比递归要快
+     * @param N
+     * @return
+     */
+    public int test(int N){
+        int n1 = 0;
+        int n2 = 1;
+        int result = 0;
+        if(N==0){
+            return n1;
+        }else if(N==1){
+            return n2;
+        }else {
+            for(int i=2;i<=N ;i++){
+                result = n1 + n2;
+                n1 = n2;
+                n2 = result;
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         T509_Fibonacci_Number test = new T509_Fibonacci_Number();
-        int res = test.fib(2);
+        int res = test.fib(3);
+        System.out.println(res);
+
+        res = test.test(3);
         System.out.println(res);
     }
 }
