@@ -25,9 +25,36 @@ public class T131_Palindrome_Partitioning {
 
     public List<List<String>> partition(String s) {
 
-        // TODO: 2019/7/16
 
         return null;
+    }
+
+    public void back(String s,List<String> result){
+        if(s.length()==0){
+            return;
+        }
+
+
+
+    }
+
+    /**
+     * 判断是否是回文
+     * @param s
+     * @return
+     */
+    private boolean isValid(String s){
+        int start =0;
+        int end = s.length()-1;
+        while (start<end){
+            if(s.charAt(start) != s.charAt(end)){
+                return false;
+            }
+            start ++;
+            end  --;
+        }
+
+        return true;
     }
 
 

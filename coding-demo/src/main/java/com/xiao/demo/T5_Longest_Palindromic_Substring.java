@@ -21,9 +21,17 @@ package com.xiao.demo;
  */
 public class T5_Longest_Palindromic_Substring {
 
+    /**
+     * 动态规划
+     * 参考：https://leetcode-cn.com/problems/longest-palindromic-substring/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-bao-gu/
+     *
+     * 此方法比较普世
+     * 还有个针本题的Manacher算法，可以了解一下
+     * @param s
+     * @return
+     */
     public String longestPalindrome(String s) {
 
-        // TODO: 2019/7/19  
         return null;
     }
 
@@ -33,6 +41,7 @@ public class T5_Longest_Palindromic_Substring {
      *
      * 你可能会问，为什么会是 2n - 1 个，而不是 n 个中心？
      * 原因在于所含字母数为偶数的回文的中心可以处于两字母之间（例如 “abba” 的中心在两个‘b’ 之间）
+     *
      *
      * @param s
      * @return
