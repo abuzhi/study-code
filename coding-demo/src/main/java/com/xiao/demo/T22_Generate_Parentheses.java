@@ -25,8 +25,8 @@ import java.util.List;
 public class T22_Generate_Parentheses {
 
     public List<String> generateParenthesis(int n) {
-
         List<String> result = new ArrayList<>();
+
         return null;
     }
 
