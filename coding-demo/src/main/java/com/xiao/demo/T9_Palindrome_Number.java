@@ -30,11 +30,30 @@ package com.xiao.demo;
 public class T9_Palindrome_Number {
     public boolean isPalindrome(int x) {
 
-        // TODO: 2019/7/19
-        return false;
+        if(x<0){
+            return false;
+        }
+
+        //用数学方法把数字反转
+        int result = 0;
+        int tmp = x;
+        while (tmp != 0) {
+            result = tmp % 10 + result * 10;
+            tmp = tmp / 10;
+        }
+
+        return result == x;
     }
 
     public static void main(String[] args) {
 
+        int x = 121;
+        T9_Palindrome_Number test = new T9_Palindrome_Number();
+        System.out.println(test.isPalindrome(x));
+
+        x = -11;
+        System.out.println(test.isPalindrome(x));
+        x = 10;
+        System.out.println(test.isPalindrome(x));
     }
 }
