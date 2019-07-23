@@ -1,5 +1,7 @@
 package com.xiao.demo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -45,10 +47,57 @@ public class T15_3Sum {
      */
     public List<List<Integer>> test2(int[] nums){
 
-        return null;
+        List<List<Integer>> list = new ArrayList<>();
+
+        if(nums==null || nums.length<3){
+            return list;
+        }
+
+        //先排序
+        Arrays.sort(nums);
+
+        for(int i =0;i<nums.length-2;i++){
+            if(nums[i]>0) break;    //不满足
+            if(i > 0 && nums[i] == nums[i-1]) continue; // 去重
+
+            int left = i+1;
+            int right = nums.length-1;
+
+            while (left<right){
+                int tmp = nums[i] + nums[left] + nums[right];
+                if(tmp>0 ){
+                    right --;
+                }else if(tmp<0){
+                    left ++;
+                }else {
+                    list.add(Arrays.asList(nums[i],nums[left],nums[right]));
+
+                    //去重
+                    while (left< right && nums[left] == nums[left+1]){
+                        left ++;
+                    }
+                    while (left< right &&  nums[right] == nums[right-1]){
+                        right --;
+                    }
+                    right --;
+                    left ++;
+
+                }
+            }
+
+        }
+
+        return list;
     }
 
     public static void main(String[] args) {
-        
+        T15_3Sum test = new T15_3Sum();
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        List result = test.test2(nums);
+        System.out.println(Arrays.toString(result.toArray()));
+
+        int[] nums2 = {0,0,0,0};
+        result = test.test2(nums2);
+        System.out.println(Arrays.toString(result.toArray()));
     }
 }
