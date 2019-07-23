@@ -24,7 +24,27 @@ import java.util.List;
 public class T15_3Sum {
     public List<List<Integer>> threeSum(int[] nums) {
 
-        // TODO: 2019/7/19
+        return null;
+    }
+
+    /**
+     * 用set去重做
+     * 但是由于给定 数组中会有重复数据，所以这个不好做
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> test1(int[] nums){
+
+        return null;
+    }
+
+    /**
+     * 先排序，再遍历
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> test2(int[] nums){
+
         return null;
     }
 

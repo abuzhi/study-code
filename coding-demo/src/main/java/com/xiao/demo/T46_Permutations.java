@@ -1,5 +1,6 @@
 package com.xiao.demo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,16 +26,16 @@ import java.util.List;
  *
  */
 public class T46_Permutations {
+
+    private List<List<Integer>> result = new ArrayList<>();
+
     public List<List<Integer>> permute(int[] nums) {
 
-        // TODO: 2019/7/22  
+        // TODO: 2019/7/22
         return null;
     }
 
-    public void back(int start,int n,List<List<Integer>> result){
-        if(start==n){
-            
-        }
+    public void back(int index,int[] nums,List<Integer> list){
     }
 
     public static void main(String[] args) {
