@@ -1,8 +1,6 @@
 package com.xiao.demo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 四数之和
@@ -46,38 +44,43 @@ public class T18_4Sum {
         if(nums.length<4){
             return list;
         }
+        Set<List<Integer>> set = new HashSet<>();
 
         //排序
         Arrays.sort(nums);
-        if(nums[0]>target) return list;
-        if(nums[0] + nums[1] > target) return list;
 
         for(int i =0;i < nums.length -3;i++){
             for(int j = i+1;j < nums.length -2;j++){
-                if(nums[j-1] == nums[j]){
-                    continue;
-                }
-
                 int left = j + 1;
                 int right = nums.length-1;
 
-                int tmp = nums[i] + nums[j] + nums[left] + nums[right];
-                if(tmp>0){
-                    right --;
-                }else if(tmp<0){
-                    left ++;
-                }else {
-                    list.add(Arrays.asList(nums[i],nums[j],nums[left],nums[right]));
-                    left ++ ;
-                    right --;
-                    while (nums[left] == nums[left-1]){
+                while (left<right){
+                    int tmp = nums[i] + nums[j] + nums[left] + nums[right];
+                    if(tmp>target){
+                        right --;
+                    }else if(tmp<target){
                         left ++;
-                    }
-                    while (nums[right] == nums[right-1]){
-                        right--;
+                    }else {
+                        //用set去重
+                        set.add(Arrays.asList(nums[i],nums[j],nums[left],nums[right]));
+
+                        //去重
+                        while (left< right && nums[left] == nums[left+1]){
+                            left ++;
+                        }
+                        while (left< right &&  nums[right] == nums[right-1]){
+                            right --;
+                        }
+                        left ++ ;
+                        right --;
                     }
                 }
+
             }
+        }
+
+        for(List<Integer> t : set){
+            list.add(t);
         }
 
 
@@ -86,7 +89,10 @@ public class T18_4Sum {
 
     public static void main(String[] args) {
         T18_4Sum test = new T18_4Sum();
-        int[] nums = {1, 0, -1, 0, -2, 2};
-        System.out.println(Arrays.toString(test.test1(nums,0).toArray()));
+//        int[] nums = {1, 0, -1, 0, -2, 2};
+//        System.out.println(Arrays.toString(test.test1(nums,0).toArray()));
+
+        int[] nums2 = {1,-2,-5,-4,-3,3,3,5};
+        System.out.println(Arrays.toString(test.test1(nums2,-11).toArray()));
     }
 }
