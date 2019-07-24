@@ -1,5 +1,7 @@
 package com.xiao.demo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,12 +34,59 @@ public class T18_4Sum {
         return null;
     }
 
+    /**
+     * 参考3sum的实现
+     * @param nums
+     * @param target
+     * @return
+     */
     public List<List<Integer>> test1(int[] nums, int target) {
 
-        return null;
+        List<List<Integer>> list = new ArrayList<>();
+        if(nums.length<4){
+            return list;
+        }
+
+        //排序
+        Arrays.sort(nums);
+        if(nums[0]>target) return list;
+        if(nums[0] + nums[1] > target) return list;
+
+        for(int i =0;i < nums.length -3;i++){
+            for(int j = i+1;j < nums.length -2;j++){
+                if(nums[j-1] == nums[j]){
+                    continue;
+                }
+
+                int left = j + 1;
+                int right = nums.length-1;
+
+                int tmp = nums[i] + nums[j] + nums[left] + nums[right];
+                if(tmp>0){
+                    right --;
+                }else if(tmp<0){
+                    left ++;
+                }else {
+                    list.add(Arrays.asList(nums[i],nums[j],nums[left],nums[right]));
+                    left ++ ;
+                    right --;
+                    while (nums[left] == nums[left-1]){
+                        left ++;
+                    }
+                    while (nums[right] == nums[right-1]){
+                        right--;
+                    }
+                }
+            }
+        }
+
+
+        return list;
     }
 
     public static void main(String[] args) {
-
+        T18_4Sum test = new T18_4Sum();
+        int[] nums = {1, 0, -1, 0, -2, 2};
+        System.out.println(Arrays.toString(test.test1(nums,0).toArray()));
     }
 }
