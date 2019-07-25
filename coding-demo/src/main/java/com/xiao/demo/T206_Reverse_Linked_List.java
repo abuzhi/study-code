@@ -1,5 +1,7 @@
 package com.xiao.demo;
 
+import com.xiao.demo.pojo.ListNode;
+
 /**
  * 反转链表
  * 反转一个单链表。
@@ -39,24 +41,7 @@ public class T206_Reverse_Linked_List {
 
     }
 
-    class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            return "ListNode{" +
-                    "val=" + val +
-                    ", next=" + next +
-                    '}';
-        }
-    }
-
-
-    public ListNode createList(int[] data,int index){
+    public ListNode createList(int[] data, int index){
         if(index == data.length -1 ){
             return new ListNode(data[index]);
         }

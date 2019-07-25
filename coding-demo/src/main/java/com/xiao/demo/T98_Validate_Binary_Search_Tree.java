@@ -1,6 +1,6 @@
 package com.xiao.demo;
 
-import com.xiao.demo.recursive.TreeNode;
+import com.xiao.demo.pojo.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,16 +78,6 @@ public class T98_Validate_Binary_Search_Tree {
 
     public static void main(String[] args) {
 
-    }
-
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
 

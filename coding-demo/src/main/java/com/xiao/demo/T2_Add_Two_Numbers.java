@@ -1,5 +1,7 @@
 package com.xiao.demo;
 
+import com.xiao.demo.pojo.ListNode;
+
 /**
  * Created by xiaoliang on 2017/3/22.
  * 两数相加
@@ -64,14 +66,4 @@ public class T2_Add_Two_Numbers {
         System.out.print("ok");
     }
 }
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
-
 

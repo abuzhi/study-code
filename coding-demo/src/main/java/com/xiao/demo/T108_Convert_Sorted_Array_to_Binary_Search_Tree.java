@@ -1,5 +1,7 @@
 package com.xiao.demo;
 
+import com.xiao.demo.pojo.TreeNode;
+
 /**
  * 将有序数组转换为二叉搜索树
  * 
@@ -29,16 +31,6 @@ public class T108_Convert_Sorted_Array_to_Binary_Search_Tree {
 
         // TODO: 2019/7/25
         return null;
-    }
-
-    class TreeNode {
-        int val;
-        T98_Validate_Binary_Search_Tree.TreeNode left;
-        T98_Validate_Binary_Search_Tree.TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 
 }
