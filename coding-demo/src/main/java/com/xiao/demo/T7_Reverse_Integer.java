@@ -20,7 +20,7 @@ package com.xiao.demo;
  * 输出: 21
  * 注意:
  *
- * 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+ * 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−2^31,  2^31 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
  *
  *
  *
@@ -29,13 +29,42 @@ package com.xiao.demo;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class T7_Reverse_Integer {
+    /**
+     * 完全是数学方法解决的
+     * 首先明确溢出边界：integer 的 [min,max] 转为十进制[-2147483648,2147483647]
+     * @param x
+     * @return
+     */
     public int reverse(int x) {
 
-        // TODO: 2019/7/19  
-        return 0;
+        int result = 0;
+        while(x!=0){
+            int tmp = x % 10;
+            x = x /10;
+
+
+            //这一步容易出现溢出,所以计算前要做判断
+            // result = result * 10 + tmp;
+            // 判断依据为转为十进制的约束
+            // 例：2147483647 > tmp * 10 + result 为 214748364 * 10 + 7
+            if(result > Integer.MAX_VALUE / 10 || (result ==Integer.MAX_VALUE / 10 && tmp > 7 )){
+                return 0;
+            }
+            if(result < Integer.MIN_VALUE / 10 || (result == Integer.MIN_VALUE / 10 && tmp < -8)){
+                return 0;
+            }
+
+            result = result * 10 + tmp;
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
 
+        T7_Reverse_Integer test = new T7_Reverse_Integer();
+        System.out.println(test.reverse(123));
+        System.out.println(test.reverse(-123));
+        System.out.println(test.reverse(120));
     }
 }
