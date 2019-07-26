@@ -2,6 +2,8 @@ package com.xiao.demo;
 
 import com.xiao.demo.pojo.ListNode;
 
+import java.util.List;
+
 /**
  * 反转链表
  * 反转一个单链表。
@@ -41,21 +43,13 @@ public class T206_Reverse_Linked_List {
 
     }
 
-    public ListNode createList(int[] data, int index){
-        if(index == data.length -1 ){
-            return new ListNode(data[index]);
-        }
-        ListNode cur = new ListNode(data[index]);
-        cur.next = createList(data,index + 1);
 
-        return cur;
-    }
 
     public static void main(String[] args) {
 
         T206_Reverse_Linked_List test = new T206_Reverse_Linked_List();
         int[] data = {1,2,3,4,5};
-        ListNode head = test.createList(data,0);
+        ListNode head = ListNode.createList(data,0);
         System.out.println(head.toString());
 
         ListNode rev = test.reverseList(head);

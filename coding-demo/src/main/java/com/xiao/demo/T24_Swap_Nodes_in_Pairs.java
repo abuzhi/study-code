@@ -19,9 +19,28 @@ import com.xiao.demo.pojo.ListNode;
  *
  */
 public class T24_Swap_Nodes_in_Pairs {
+
+    /**
+     * 神奇的递归
+     * @param head
+     * @return
+     */
     public ListNode swapPairs(ListNode head) {
 
-        return null;
+        if(head==null || head.next == null){
+            return head;
+        }
+
+        ListNode next = head.next;
+        head.next = swapPairs(next.next);
+        next.next = head;
+
+        return next;
     }
 
+    public static void main(String[] args) {
+        T24_Swap_Nodes_in_Pairs test = new T24_Swap_Nodes_in_Pairs();
+        int[] data = {1,2,3,4};
+        System.out.println(test.swapPairs(ListNode.createList(data,0)));
+    }
 }
