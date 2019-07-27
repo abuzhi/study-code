@@ -79,6 +79,11 @@ public class T232_Implement_Queue_using_Stacks {
     }
 
 
+    /**
+     * 代码的话不是很难
+     * 主要思想在于 用两个stack 来模拟队列，一个用来入，一个用来出。并且出队列的时候，才进行数据的移动
+     * @param args
+     */
     public static void main(String[] args) {
         T232_Implement_Queue_using_Stacks test = new T232_Implement_Queue_using_Stacks();
 
