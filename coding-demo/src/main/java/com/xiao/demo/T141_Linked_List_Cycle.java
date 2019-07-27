@@ -78,18 +78,17 @@ public class T141_Linked_List_Cycle {
         if(head==null || head.next==null){
             return false;
         }
-
         ListNode slow = head;
-        ListNode fast = head.next;
-        while (fast!=slow){
-            if(fast ==null || fast.next ==null){
-                return false;
-            }
+        ListNode fast = head;
+        while (fast !=null && fast.next !=null){
             slow = slow.next;
             fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
         }
 
-        return true;
+        return false;
     }
 
     public static void main(String[] args) {
