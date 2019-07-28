@@ -1,5 +1,7 @@
 package com.xiao.demo;
 
+import java.util.PriorityQueue;
+
 /**
  * 数据流中的第K大元素
  *
@@ -29,16 +31,43 @@ package com.xiao.demo;
  */
 public class T703_Kth_Largest_Element_in_a_Stream {
 
+    private PriorityQueue<Integer> queue = null;
+
+    private int k = 0;
+
     public T703_Kth_Largest_Element_in_a_Stream(int k, int[] nums) {
-
+        queue = new PriorityQueue<>(k);
+        this.k = k;
+        for(int i : nums){
+            add(i);
+        }
     }
 
+    /**
+     * java 优先队列
+     * @param val
+     * @return
+     */
     public int add(int val) {
-
-        // TODO: 2019/7/28  
-        return 0;
+        if(queue.size()<k){
+            queue.add(val);
+        }else if(queue.peek()< val){
+            queue.poll();
+            queue.add(val);
+        }
+        return queue.peek();
     }
 
+    public static void main(String[] args) {
+        int[] nums = {4,5,8,2};
+        int k = 3;
+        T703_Kth_Largest_Element_in_a_Stream test = new T703_Kth_Largest_Element_in_a_Stream(k,nums);
+        System.out.println(test.add(3)); // returns 4
+        System.out.println(test.add(5));// returns 5
+        System.out.println(test.add(10));// returns 5
+        System.out.println(test.add(9));// returns 8
+        System.out.println(test.add(4));// returns 8
+    }
 
 }
 
