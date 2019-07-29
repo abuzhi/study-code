@@ -55,12 +55,91 @@ package com.xiao.demo;
  */
 public class T8_String_to_Integer {
     public int myAtoi(String str) {
+        if(str!=null && str.length()>0){
+            char firstChar = ' ';
+            int start =0;
+            int end = 0;
+            char lastChar = ' ';
+            for (int i=0;i<str.length();i++){
+                char ch = str.charAt(i);
+                if(firstChar==' ' && ch == ' '){
+                    continue;
+                }
 
-        // TODO: 2019/7/19  
+                if(firstChar==' '){
+                    firstChar = ch;
+                    if(firstChar!='-' && !(firstChar>='0' && firstChar<='9')){
+                        return 0;
+                    }
+                    start = i;
+                    lastChar = ch;
+                    end = i;
+                    continue;
+                }
+
+                lastChar = ch;
+                if(lastChar>='0' && lastChar<='9'){
+                    end = i;
+                    continue;
+                }else {
+                    break;
+                }
+            }
+            if(firstChar==' '){
+                return 0;
+            }
+
+            String tmp = str.substring(start,end+1);
+            return result(tmp);
+
+        }
+
         return 0;
     }
 
+    private int result(String tmp){
+        if(tmp.startsWith("-") && tmp.length()==1){
+            return 0;
+        }
+        int result =0;
+        if(tmp.startsWith("-")){
+            result = Integer.valueOf(tmp.charAt(1)) * -1;
+            for(int i =2;i<tmp.length();i++){
+                if(result < Integer.MIN_VALUE / 10 || (result == Integer.MIN_VALUE / 10 && Integer.valueOf(String.valueOf(tmp.charAt(i)))<-8)){
+                    return Integer.MIN_VALUE;
+                }
+                result = result * 10 + Integer.valueOf(String.valueOf(tmp.charAt(i)));
+            }
+        }else {
+            for(int i =0;i<tmp.length();i++){
+                if(result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE /10 && Integer.valueOf(String.valueOf(tmp.charAt(i)))>7)){
+                    return Integer.MAX_VALUE;
+                }
+                result = result * 10 + Integer.valueOf(String.valueOf(tmp.charAt(i)));
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        
+        T8_String_to_Integer test = new T8_String_to_Integer();
+        String s = "4193 with words";
+//        System.out.println(test.myAtoi(s));
+
+        s = "-0 451";
+        System.out.println(test.myAtoi(s));
+
+        s = "    -45 ";
+        System.out.println(test.myAtoi(s));
+        s = "words and 987";
+        System.out.println(test.myAtoi(s));
+        s = "-91283472332";
+        System.out.println(test.myAtoi(s));
+        s = "44";
+        System.out.println(test.myAtoi(s));
+        s = " ";
+        System.out.println(test.myAtoi(s));
+
+        // TODO: 2019/7/29 不正确 
     }
 }
