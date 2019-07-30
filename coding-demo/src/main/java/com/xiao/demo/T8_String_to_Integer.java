@@ -121,6 +121,7 @@ public class T8_String_to_Integer {
         return result;
     }
 
+
     public static void main(String[] args) {
         T8_String_to_Integer test = new T8_String_to_Integer();
         String s = "4193 with words";
