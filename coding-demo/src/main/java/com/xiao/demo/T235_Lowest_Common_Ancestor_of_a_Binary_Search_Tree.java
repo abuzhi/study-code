@@ -34,48 +34,42 @@ import java.util.Map;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class T235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
-        return null;
-    }
-
     /**
-     * path路径，用父指针
+     * 由于为二叉搜索树，递归比较各子节点大小即可
      * @param root
      * @param p
      * @param q
      * @return
      */
-    public TreeNode test1(TreeNode root, TreeNode p, TreeNode q) {
-
-
-
-        while (root!=null){
-            TreeNode left = root.left;
-            TreeNode right = root.right;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null){
+            return null;
         }
-
-        return null;
-    }
-
-    Map<TreeNode,TreeNode> map = new HashMap<>();
-    private TreeNode back(TreeNode root, TreeNode p, TreeNode q){
-        if(root==null || root.left == null || root.right == null){
+        int pVal = p.val;
+        int qVal = q.val;
+        if(pVal<root.val && qVal<root.val){
+            return this.lowestCommonAncestor(root.left,p,q);
+        }else if(pVal > root.val && qVal>root.val){
+            return this.lowestCommonAncestor(root.right,p,q);
+        }else {
             return root;
         }
-
-        TreeNode left = back(root.left,p,q);
-        map.put(left,root);
-        if(root==p || root==q){
-            return root;
-        }
-        TreeNode right = back(root.right,p,q);
-        map.put(right,root);
-
-        return root;
     }
 
     public static void main(String[] args) {
+
+        Integer[] data = {6,2,8,0,4,7,9,null,null,3,5};
+        TreeNode root = new TreeNode();
+        root = root.createTree(data);
+        TreeNode p = new TreeNode(2);
+        TreeNode q = new TreeNode(8);
+
+        T235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree test = new T235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree();
+        System.out.println(test.lowestCommonAncestor(root,p,q).val);
+
+        p.val = 2;
+        q.val = 4;
+        System.out.println(test.lowestCommonAncestor(root,p,q).val);
 
     }
 }
