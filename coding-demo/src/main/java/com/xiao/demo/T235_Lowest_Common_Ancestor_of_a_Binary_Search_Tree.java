@@ -2,6 +2,9 @@ package com.xiao.demo;
 
 import com.xiao.demo.pojo.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 二叉搜索树的最近公共祖先
  * 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
@@ -43,7 +46,7 @@ public class T235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree {
     }
 
     /**
-     * path路径
+     * path路径，用父指针
      * @param root
      * @param p
      * @param q
@@ -51,10 +54,32 @@ public class T235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree {
      */
     public TreeNode test1(TreeNode root, TreeNode p, TreeNode q) {
 
+
+
+        while (root!=null){
+            TreeNode left = root.left;
+            TreeNode right = root.right;
+        }
+
         return null;
     }
 
+    Map<TreeNode,TreeNode> map = new HashMap<>();
+    private TreeNode back(TreeNode root, TreeNode p, TreeNode q){
+        if(root==null || root.left == null || root.right == null){
+            return root;
+        }
 
+        TreeNode left = back(root.left,p,q);
+        map.put(left,root);
+        if(root==p || root==q){
+            return root;
+        }
+        TreeNode right = back(root.right,p,q);
+        map.put(right,root);
+
+        return root;
+    }
 
     public static void main(String[] args) {
 
