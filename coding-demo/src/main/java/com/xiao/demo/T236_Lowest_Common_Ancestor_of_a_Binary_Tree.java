@@ -38,12 +38,37 @@ import com.xiao.demo.pojo.TreeNode;
  *
  */
 public class T236_Lowest_Common_Ancestor_of_a_Binary_Tree {
+
+    /**
+     * 这个递归很神奇
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
-        return null;
+        if(root==null || root == p || root == q){
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+        return left == null ? right : (right == null ? left : root);
     }
 
     public static void main(String[] args) {
+        Integer[] data = {3,5,1,6,2,0,8,null,null,7,4};
+        TreeNode root = new TreeNode();
+        root = root.createTree(data);
+        TreeNode p = new TreeNode(5);
+        TreeNode q = new TreeNode(1);
 
+        T236_Lowest_Common_Ancestor_of_a_Binary_Tree test = new T236_Lowest_Common_Ancestor_of_a_Binary_Tree();
+        System.out.println(test.lowestCommonAncestor(root,p,q).val);
+
+        p.val = 5;
+        q.val = 4;
+        System.out.println(test.lowestCommonAncestor(root,p,q).val);
     }
 }
