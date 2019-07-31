@@ -26,9 +26,24 @@ package com.xiao.demo;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class T50_Pow_x_n {
+
+
+    /**
+     * 暴力法
+     * 会超时
+     * @param x
+     * @param n
+     * @return
+     */
     public double myPow(double x, int n) {
 
-        return 0;
+        long tmpN = n;
+        if(tmpN < 0){
+            x = 1/x;
+            tmpN = -tmpN; //这里需要注意，java中int的min和max，min不能转为正的int，因为比max大1，会溢出
+        }
+
+        return test1(x,tmpN);
     }
 
     /**
@@ -38,9 +53,17 @@ public class T50_Pow_x_n {
      * @param n
      * @return
      */
-    public double test1(double x, int n) {
+    public double test1(double x, long n) {
 
-        return 0;
+        if(n == 0){
+            return 1.0;
+        }
+
+        if(n%2 == 0){
+            return test1(x * x,n/2);
+        }
+
+        return test1(x ,n-1) * x;
     }
 
     /**
@@ -59,6 +82,10 @@ public class T50_Pow_x_n {
 
     public static void main(String[] args) {
 
-        // TODO: 2019/7/30  
+        T50_Pow_x_n test = new T50_Pow_x_n();
+        System.out.println(test.myPow(2.1,3));
+        System.out.println(test.myPow(2.000,10));
+        System.out.println(test.myPow(2.000,-2));
+        System.out.println(test.myPow(1.000,-2147483648));
     }
 }
