@@ -68,4 +68,14 @@ public class SetTest {
             this.age = age;
         }
     }
+
+    @Test
+    public void testArray() {
+        int[][] data = {
+                {1,3,4},
+                {5,6,7}
+        };
+        System.out.println(data.length);
+        System.out.println(data[0].length);
+    }
 }
