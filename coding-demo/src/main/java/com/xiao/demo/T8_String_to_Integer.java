@@ -1,5 +1,8 @@
 package com.xiao.demo;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by xiaoliang on 2017/3/27.
  * 字符串转换整数 (atoi)
@@ -23,6 +26,9 @@ package com.xiao.demo;
  * 示例 1:
  *
  * 输入: "42"
+
+    42222
+
  * 输出: 42
  * 示例 2:
  *
@@ -55,6 +61,11 @@ package com.xiao.demo;
  */
 public class T8_String_to_Integer {
     public int myAtoi(String str) {
+
+        return test1(str);
+    }
+
+    public int test2(String str){
         if(str!=null && str.length()>0){
             char firstChar = ' ';
             int start =0;
@@ -122,6 +133,36 @@ public class T8_String_to_Integer {
     }
 
 
+    /**
+     * 正则
+     * @return
+     */
+    public int test1(String str){
+        str=str.trim(); //去除头尾空格
+        String pattern="^[\\+\\-\\d]\\d*";//正则表达式，表示以正号或负号或数字开头，且后面是0个或多个数字
+        Pattern p=Pattern.compile(pattern);
+        Matcher m=p.matcher(str);
+
+        String res="";
+        if(m.find()){//能匹配到
+            res=str.substring(m.start(),m.end());
+        }else{//不能匹配到
+            return 0;
+        }
+
+        //能匹配到但只有一个+-号，也返回0
+        if(res.length()==1&&(res.charAt(0)=='+'||res.charAt(0)=='-')){
+            return 0;
+        }
+
+        try{
+            int r=Integer.parseInt(res);
+            return r;
+        }catch(Exception e){
+            return res.charAt(0)=='-'?Integer.MIN_VALUE:Integer.MAX_VALUE;
+        }
+    }
+
     public static void main(String[] args) {
         T8_String_to_Integer test = new T8_String_to_Integer();
         String s = "4193 with words";
@@ -141,6 +182,5 @@ public class T8_String_to_Integer {
         s = " ";
         System.out.println(test.myAtoi(s));
 
-        // TODO: 2019/7/29 不正确
     }
 }
