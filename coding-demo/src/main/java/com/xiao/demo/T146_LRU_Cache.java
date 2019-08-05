@@ -1,5 +1,7 @@
 package com.xiao.demo;
 
+import java.util.LinkedHashMap;
+
 /**
  * LRU缓存机制
  *
@@ -31,20 +33,29 @@ package com.xiao.demo;
         *著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class T146_LRU_Cache {
-    public T146_LRU_Cache(int capacity) {
 
+    private int cap = 0;
+    private LinkedHashMap<Integer,Integer> lru = null;
+
+    /**
+     * 双向哈希链表实现
+     * @param capacity
+     */
+    public T146_LRU_Cache(int capacity) {
+        lru = new LinkedHashMap<>(capacity);
+        cap = capacity;
     }
 
     public int get(int key) {
-
-        return 0;
+        return lru.getOrDefault(key,-1);
     }
 
     public void put(int key, int value) {
-
+        lru.put(key,value);
     }
 
     public static void main(String[] args) {
         // TODO: 2019/8/1
+
     }
 }
