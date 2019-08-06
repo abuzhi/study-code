@@ -50,7 +50,7 @@ public class T460_LFU_Cache {
 
     public static void main(String[] args) {
 
-        // TODO: 2019/8/1  
+        // TODO: 2019/8/1
     }
 }
 
