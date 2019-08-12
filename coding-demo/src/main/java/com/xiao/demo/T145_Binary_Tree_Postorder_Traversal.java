@@ -2,7 +2,10 @@ package com.xiao.demo;
 
 import com.xiao.demo.pojo.TreeNode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  *
@@ -31,15 +34,41 @@ import java.util.List;
  */
 public class T145_Binary_Tree_Postorder_Traversal {
 
+    /**
+     * 用栈实现递归操作
+     * @param root
+     * @return
+     */
     public List<Integer> postorderTraversal(TreeNode root) {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        LinkedList<Integer> output = new LinkedList<>();
+        if (root == null) {
+            return output;
+        }
 
-        
-        return null;
+        stack.add(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pollLast();
+            output.addFirst(node.val);
+            if (node.left != null) {
+                stack.add(node.left);
+            }
+            if (node.right != null) {
+                stack.add(node.right);
+            }
+        }
+        return output;
     }
 
     public static void main(String[] args) {
 
-        // TODO: 2019/8/11  
+        T145_Binary_Tree_Postorder_Traversal test = new T145_Binary_Tree_Postorder_Traversal();
+        Integer[] data = {1,null,2,null,null,3};
+        TreeNode tree = new TreeNode();
+        tree = tree.createTree(data);
+
+        System.out.println(test.postorderTraversal(tree));
+
     }
 
 }
