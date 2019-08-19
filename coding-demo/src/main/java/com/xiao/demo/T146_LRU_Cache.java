@@ -1,6 +1,8 @@
 package com.xiao.demo;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * LRU缓存机制
@@ -34,28 +36,45 @@ import java.util.LinkedHashMap;
  */
 public class T146_LRU_Cache {
 
-    private int cap = 0;
-    private LinkedHashMap<Integer,Integer> lru = null;
+    private int capacity = 0;
+    private Map<Integer,Node> map = null;
+    private DoubleLinkedList cache = null;
 
     /**
      * 双向哈希链表实现
+     *
+     * 双链表用于实现cache缓存，hash表可以实现O(1)的查找
      * @param capacity
      */
     public T146_LRU_Cache(int capacity) {
-        lru = new LinkedHashMap<>(capacity);
-        cap = capacity;
+        map = new HashMap<>(capacity);
+        this.capacity = capacity;
+        this.cache = new DoubleLinkedList();
     }
 
     public int get(int key) {
-        return lru.getOrDefault(key,-1);
+        Node node =  map.get(key);
+        if(node == null){
+            return -1;
+        }
+        cache.remove(node);
+        cache.addFirst(node);
+        map.put(key,node);
+        return node.value;
     }
 
     public void put(int key, int value) {
-        lru.put(key,value);
+        Node node = new Node(key,value);
+        if(cache.size()==this.capacity){
+            Node last =  cache.removeLast();
+            map.remove(last.key);
+        }
+        map.put(key,node);
+        cache.addFirst(node);
     }
 
     public static void main(String[] args) {
-        LinkedHashMap<Integer,Integer> cache = new LinkedHashMap<>(2);
+        T146_LRU_Cache cache = new T146_LRU_Cache(2);
 
         cache.put(1,1);
         cache.put(2,2);
@@ -66,5 +85,76 @@ public class T146_LRU_Cache {
         System.out.println(cache.get(1));       // 返回 -1 (未找到)
         System.out.println(cache.get(3));       // 返回  3
         System.out.println(cache.get(4));
+
+        T146_LRU_Cache cache2 = new T146_LRU_Cache(1);
+        cache2.put(2,1);
+        System.out.println(cache2.get(2));       // 返回  1
+    }
+
+    /**
+     * 节点信息
+     */
+    class Node {
+        int key;
+        int value;
+        Node pre,next;
+
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    /**
+     * 双链表，用于作cache
+     */
+    class DoubleLinkedList{
+
+        private int size;
+        private Node head,tail;
+
+        public DoubleLinkedList() {
+            this.head = new Node(0,0);
+            this.tail = new Node(0,0);
+            this.size = 0;
+            head.next = tail;
+            tail.pre = head;
+        }
+
+        public void addFirst(Node node){
+            node.next = head.next;
+            node.pre = head;
+            head.next.pre = node;
+            head.next = node;
+            size ++;
+        }
+
+        public Node removeLast(){
+
+            if(tail.pre == head){
+                return null;
+            }
+            Node last = tail.pre;
+            remove(last);
+            return last;
+        }
+
+        /**
+         * 必须保证node存在
+         * @param node
+         * @return
+         */
+        public void remove(Node node){
+            node.pre.next = node.next;
+            node.next.pre = node.pre;
+            size --;
+        }
+
+        public int size(){
+            return size;
+        }
+
     }
 }
+
+
