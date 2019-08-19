@@ -63,14 +63,23 @@ public class T146_LRU_Cache {
         return node.value;
     }
 
+    /**
+     *
+     * @param key
+     * @param value
+     */
     public void put(int key, int value) {
-        Node node = new Node(key,value);
-        if(cache.size()==this.capacity){
+        Node node =  map.get(key);
+        if(node!=null){
+            cache.remove(node);
+        }
+        node = new Node(key,value);
+        map.put(key,node);
+        cache.addFirst(node);
+        if(cache.size() > this.capacity){
             Node last =  cache.removeLast();
             map.remove(last.key);
         }
-        map.put(key,node);
-        cache.addFirst(node);
     }
 
     public static void main(String[] args) {
@@ -89,6 +98,18 @@ public class T146_LRU_Cache {
         T146_LRU_Cache cache2 = new T146_LRU_Cache(1);
         cache2.put(2,1);
         System.out.println(cache2.get(2));       // 返回  1
+
+
+        T146_LRU_Cache cache3 = new T146_LRU_Cache(2);
+        System.out.println(cache3.get(2));       // 返回  -1
+
+        cache3.put(2,6);
+        System.out.println(cache3.get(1));       // 返回 -1 (未找到)
+        cache3.put(1,5);    //
+        cache3.put(1,2);    //
+        System.out.println(cache3.get(1));       // 返回 -1 (未找到)
+        System.out.println(cache3.get(2));       // 返回  6
+
     }
 
     /**
