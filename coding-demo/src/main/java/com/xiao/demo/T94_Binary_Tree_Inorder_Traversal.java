@@ -2,6 +2,7 @@ package com.xiao.demo;
 
 import com.xiao.demo.pojo.TreeNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,12 +32,29 @@ public class T94_Binary_Tree_Inorder_Traversal {
 
     public List<Integer> inorderTraversal(TreeNode root) {
 
+
         return null;
+    }
+
+    List<Integer> list =new ArrayList<>();
+    public void test1(TreeNode root){
+        if(root==null){
+            return;
+        }
+
+        test1(root.left);
+        list.add(root.val);
+        test1(root.right);
     }
 
     public static void main(String[] args) {
 
+        T94_Binary_Tree_Inorder_Traversal test = new T94_Binary_Tree_Inorder_Traversal();
+        TreeNode t = new TreeNode();
+        t = t.createTree(new Integer[]{1,null,2,null,null,3});
 
+        test.test1(t);
+        System.out.println( test.list);
     }
 
 }
