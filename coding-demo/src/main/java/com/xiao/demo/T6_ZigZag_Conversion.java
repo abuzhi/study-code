@@ -38,7 +38,7 @@ package com.xiao.demo;
 public class T6_ZigZag_Conversion {
     public String convert(String s, int numRows) {
 
-        // TODO: 2019/7/19  
+        // TODO: 2019/7/19
         return null;
     }
 
