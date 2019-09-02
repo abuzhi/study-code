@@ -78,6 +78,6 @@ public class T12_Integer_to_Roman {
 
     public static void main(String[] args) {
 
-        // TODO: 2019/9/1  
+        // TODO: 2019/9/1
     }
 }
